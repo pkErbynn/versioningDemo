@@ -3,8 +3,8 @@ name: Release
 
 on:
   push:
-    tags: [ "v[0-9]+.[0-9]+.[0-9]+" ]
+     branches: [ main ]
 
 jobs:
-  build:
-    uses: ./.github/workflows/builc-ci.yml
+  build2:
+    uses: ./.github/workflows/build-ci.yml

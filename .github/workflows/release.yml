@@ -6,5 +6,5 @@ on:
      branches: [ main ]
 
 jobs:
-  build2:
+  build:
     uses: ./.github/workflows/build-ci.yml

@@ -23,9 +23,11 @@ jobs:
       with:
         versionSpec: '5.x'
 
-    - name: Use GitVersion
+    - name: Determine Version
       id: gitversion # step id used as reference for output values
-      uses: gittools/actions/gitversion/execute@v0.9
+      uses: gittools/actions/gitversion/execute@v0.9.7
+      with:
+        useConfigFile: true
           
     - run: |
         echo "Major: ${{ steps.gitversion.outputs.major }}"

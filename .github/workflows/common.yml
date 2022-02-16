@@ -29,8 +29,9 @@ jobs:
       with:
         useConfigFile: true
         configFilePath: GitVersion.yml
-          
-    - run: |
+        
+    - name: Display GitVersion outputs
+      run: |
         echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
         echo "InformationalVersion: ${{ steps.gitversion.outputs.informationalVersion }}"
 

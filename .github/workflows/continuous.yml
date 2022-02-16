@@ -10,3 +10,4 @@ on:
 jobs:
  build:
   uses: ./.github/workflows/common.yml
+  # uses: ./.github/workflows/common-continuous.yml ## useable since common-continuous.yml has the 'workflow_call' property

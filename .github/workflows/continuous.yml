@@ -1,12 +1,12 @@
 
-#name: Continuous
+name: Continuous
 
-#on:
-#  push:
- #    branches: [ main ]
-  #pull_request:
-   # branches: [ main ]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-#jobs:
- # build:
-  #  uses: ./.github/workflows/common.yml
+jobs:
+ build:
+  uses: ./.github/workflows/common.yml

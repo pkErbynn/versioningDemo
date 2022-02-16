@@ -1,8 +1,13 @@
 name: common
 
+#on:
+#  workflow_call:
 on:
-  workflow_call:
-
+  push:
+     branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
 jobs:
   build:
 

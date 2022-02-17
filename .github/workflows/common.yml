@@ -2,11 +2,18 @@ name: common
 
 on:
   workflow_call:
+    outputs:
+      semVer:
+        description: "package semVer"
+        value: ${{ jobs.build.outputs.version }}
     
 jobs:
   build:
 
     runs-on: windows-2022
+
+    outputs:
+      version: ${{ steps.gitversion.outputs.semVer }}
 
     steps:
     - uses: actions/checkout@v2
@@ -24,7 +31,7 @@ jobs:
         versionSpec: '5.x'
 
     - name: Determine Version
-      id: gitversion # step id used as reference for output values
+      id: gitversion
       uses: gittools/actions/gitversion/execute@v0.9.7
       with:
         useConfigFile: true

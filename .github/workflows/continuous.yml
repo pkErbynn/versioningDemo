@@ -20,7 +20,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
-          name: versioningDemo-*
+          name: versioningDemo-**
           path: ./versioningDemo-*
 
       - name: Display structure of downloaded files

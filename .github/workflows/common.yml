@@ -53,4 +53,3 @@ jobs:
         name: versioningDemo-${{ steps.gitversion.outputs.semVer }}
         path: versioningDemo/*
         if-no-files-found: error
-      

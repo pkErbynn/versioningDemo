@@ -1,4 +1,4 @@
-mode: Mainline
+mode: Mainline1
 branches: 
   feature:
     tag: feature-{BranchName}

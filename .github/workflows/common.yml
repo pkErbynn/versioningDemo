@@ -55,7 +55,7 @@ jobs:
     - name: Package build artifact
       uses: actions/upload-artifact@v2
       with:
-        name: versioningDemo
+        name: versioningDemo-${{ steps.gitversion.outputs.semVer }}
         path: package/*
         if-no-files-found: error
       

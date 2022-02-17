@@ -8,19 +8,3 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/common.yml
-  
-  download-artifact:
-    runs-on:  windows-2022
-    needs: build
-
-    steps:
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: versioningDemo-*
-          path: ./package
-
-      - name: Display structure of downloaded files
-        run: ls -R
-      

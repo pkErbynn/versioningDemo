@@ -43,4 +43,19 @@ jobs:
       
     - name: Test
       run: dotnet test --no-build --configuration Release --verbosity normal
+
+    - name: Create archive files
+      run: |
+        mkdir package
+        cd package
+        echo 'one' > one.txt
+        echo 'two' > two.txt
+        cd ..
+        
+    - name: Package build artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: versioningDemo
+        path: package/*
+        if-no-files-found: error
       

@@ -21,7 +21,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           # name: versioningDemo-2.2.2-PullRequest0013.9
-          name: versioningDemo-**
+          name: versioningDemo-${{ steps.gitversion.outputs.semVer }}
           #path: ./versioningDemo-*
 
       - name: Display structure of downloaded files

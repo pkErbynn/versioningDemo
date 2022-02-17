@@ -8,6 +8,22 @@ on:
     branches: [ main ]
 
 jobs:
- build:
-  uses: ./.github/workflows/common.yml
+  build:
+    uses: ./.github/workflows/common.yml
   # uses: ./.github/workflows/common-continuous.yml ## useable since common-continuous.yml has the 'workflow_call' property
+
+  download-artifact:
+    runs-on:  windows-2022
+    needs: build
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          # name: versioningDemo-2.2.2-PullRequest0013.9
+          name: versioningDemo-${{ needs.build.outputs.semVer }}
+          #path: ./versioningDemo-*
+
+      - name: Display structure of downloaded files
+        run: ls -R
+      

@@ -1,9 +1,6 @@
-mode: Mainline
-branches: 
-  feature:
-    tag: feature-{BranchName}
-  hotfix:
-    tag: fix-{BranchName}
+mode: ContinuousDelivery
+branches: {}
 ignore:
   sha: []
 merge-message-formats: {}
+ 

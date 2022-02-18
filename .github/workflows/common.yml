@@ -51,6 +51,9 @@ jobs:
     - name: Test
       run: dotnet test --no-build --configuration Release --verbosity normal
 
+    # - name: Pack
+    #   run: dotnet pack --no-build --configuration Release --output versioningDemo #.nupkg
+
     - name: Publish
       run: dotnet publish -c Release -o versioningDemo
         

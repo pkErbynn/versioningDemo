@@ -8,3 +8,19 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/common.yml
+
+  download-and-deploy-artifact:
+    runs-on:  windows-2022
+    needs: build
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: versioningDemo-${{ needs.build.outputs.semVer }}
+
+      # - name: Display structure of downloaded files
+      #   run: ls -R
+
+      - name: Publish to nuget
+        run: echo "Publish..."

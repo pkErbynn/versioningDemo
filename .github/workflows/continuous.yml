@@ -12,16 +12,16 @@ jobs:
     uses: ./.github/workflows/common.yml
     # uses: ./.github/workflows/common-continuous.yml ## useable since common-continuous.yml has the 'workflow_call' property
 
-  show-artifact:
-    runs-on:  windows-2022
-    needs: build
+  # show-artifact:
+  #   runs-on:  windows-2022
+  #   needs: build
 
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: versioningDemo-${{ needs.build.outputs.semVer }}
+  #   steps:
+  #     - name: Download artifact
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: versioningDemo-${{ needs.build.outputs.semVer }}
 
-      - name: Display structure of downloaded files
-        run: ls -R
+  #     - name: Display structure of downloaded files
+  #       run: ls -R
       

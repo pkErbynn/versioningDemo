@@ -1,9 +1,16 @@
 mode: Mainline
-branches: 
-  feature:
-    tag: feature-{BranchName}
-  hotfix:
-    tag: fix-{BranchName}
+branches: {}
 ignore:
   sha: []
 merge-message-formats: {}
+
+
+# mode: Mainline
+# branches: 
+#   feature:
+#     tag: feature-{BranchName}
+#   hotfix:
+#     tag: fix-{BranchName}
+# ignore:
+#   sha: []
+# merge-message-formats: {}

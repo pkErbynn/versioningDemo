@@ -1,65 +1,41 @@
 name: common
 
 on:
-  workflow_call:
-    outputs:
-      semVer:
-        description: "package semVer"
-        value: ${{ jobs.build.outputs.version }}
-    
+  workflow_call:  # avail for other pipeline to ref
+
 jobs:
   build:
 
     runs-on: windows-2022
 
-    outputs:
-      version: ${{ steps.gitversion.outputs.semVer }}
-
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0
+        fetch-depth: 0  # key needed to GitVersion tool
         
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
     
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.7
-      with:
-        versionSpec: '5.x'
-
-    - name: Determine Version
-      id: gitversion
-      uses: gittools/actions/gitversion/execute@v0.9.7
-      with:
-        useConfigFile: true
-        configFilePath: GitVersion.yml
-        
-    - name: Display GitVersion outputs
-      run: |
-        echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
-        echo "InformationalVersion: ${{ steps.gitversion.outputs.informationalVersion }}"
-
     - name: Restore dependencies
       run: dotnet restore --locked-mode
       
     - name: Build
       run: dotnet build --no-restore --configuration Release
       
-    - name: Test
+    - name: Test  # GitVersion takes effect here with pushed tags in Release pipeline
       run: dotnet test --no-build --configuration Release --verbosity normal
 
     # - name: Pack
-    #   run: dotnet pack --no-build --configuration Release --output versioningDemo #.nupkg
+    #   run: dotnet pack --no-build --configuration Release --output package  # results package.nupkg
 
     - name: Publish
-      run: dotnet publish -c Release -o versioningDemo
+      run: dotnet publish -c Release -o package
         
     - name: Package published artifact
       uses: actions/upload-artifact@v2
       with:
-        name: versioningDemo-${{ steps.gitversion.outputs.semVer }}
-        path: versioningDemo/*
+        name: package
+        path: package/*
         if-no-files-found: error

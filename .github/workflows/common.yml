@@ -2,18 +2,11 @@ name: common
 
 on:
   workflow_call:
-    # outputs:
-    #   semVer:
-    #     description: "package semVer"
-    #     value: ${{ jobs.build.outputs.version }}
     
 jobs:
   build:
 
     runs-on: windows-2022
-
-    # outputs:
-    #   version: ${{ steps.gitversion.outputs.semVer }}
 
     steps:
     - uses: actions/checkout@v2
@@ -25,23 +18,6 @@ jobs:
       with:
         dotnet-version: 6.0.x
     
-    # - name: Install GitVersion
-    #   uses: gittools/actions/gitversion/setup@v0.9.7
-    #   with:
-    #     versionSpec: '5.x'
-
-    # - name: Determine Version
-    #   id: gitversion  # remove this
-    #   uses: gittools/actions/gitversion/execute@v0.9.7
-    #   with:
-    #     useConfigFile: true
-    #     configFilePath: GitVersion.yml
-        
-    # - name: Display GitVersion outputs
-    #   run: |
-    #     echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
-    #     echo "InformationalVersion: ${{ steps.gitversion.outputs.informationalVersion }}"
-
     - name: Restore dependencies
       run: dotnet restore --locked-mode
       
@@ -55,12 +31,11 @@ jobs:
     #   run: dotnet pack --no-build --configuration Release --output versioningDemo #.nupkg
 
     - name: Publish
-      run: dotnet publish -c Release -o versioningDemo
+      run: dotnet publish -c Release -o package
         
     - name: Package published artifact
       uses: actions/upload-artifact@v2
       with:
-        # name: versioningDemo-${{ steps.gitversion.outputs.semVer }}
-        name: versioningDemo
-        path: versioningDemo/*
+        name: package
+        path: package/*
         if-no-files-found: error

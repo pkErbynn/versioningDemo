@@ -1,7 +1,7 @@
 name: common
 
-# on:
-#   workflow_call:  # avail for other pipeline to ref
+on:
+  workflow_call:  # avail for other pipeline to ref
 
 # remove me
 on:

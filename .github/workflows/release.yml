@@ -23,8 +23,8 @@ jobs:
           # name: package
 
 
-      # - name: Display structure of downloaded files
-      #   run: ls -R
+      - name: Display structure of downloaded files
+        run: ls -R
 
       - name: Publish to nuget
         run: echo "Publish..."

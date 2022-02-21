@@ -4,7 +4,7 @@ name: common
 #   workflow_call:  # avail for other pipeline to ref
 
 # remove me
-on:
+on: 
   push:
     branches: [ main ]
   pull_request:

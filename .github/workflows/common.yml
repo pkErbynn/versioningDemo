@@ -2,18 +2,18 @@ name: common
 
 on:
   workflow_call:
-    outputs:
-      semVer:
-        description: "package semVer"
-        value: ${{ jobs.build.outputs.version }}
+    # outputs:
+    #   semVer:
+    #     description: "package semVer"
+    #     value: ${{ jobs.build.outputs.version }}
     
 jobs:
   build:
 
     runs-on: windows-2022
 
-    outputs:
-      version: ${{ steps.gitversion.outputs.semVer }}
+    # outputs:
+    #   version: ${{ steps.gitversion.outputs.semVer }}
 
     steps:
     - uses: actions/checkout@v2
@@ -31,7 +31,7 @@ jobs:
         versionSpec: '5.x'
 
     - name: Determine Version
-      id: gitversion
+      id: gitversion  # remove this
       uses: gittools/actions/gitversion/execute@v0.9.7
       with:
         useConfigFile: true
@@ -60,6 +60,7 @@ jobs:
     - name: Package published artifact
       uses: actions/upload-artifact@v2
       with:
-        name: versioningDemo-${{ steps.gitversion.outputs.semVer }}
+        # name: versioningDemo-${{ steps.gitversion.outputs.semVer }}
+        name: versioningDemo
         path: versioningDemo/*
         if-no-files-found: error

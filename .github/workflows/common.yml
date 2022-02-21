@@ -1,16 +1,7 @@
 name: common
 
-# on:
-#   workflow_call:  # avail for other pipeline to ref
-
-# remove me
-on: 
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on:
   workflow_call:  # avail for other pipeline to ref
-
 
 jobs:
   build:

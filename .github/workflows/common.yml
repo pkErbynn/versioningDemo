@@ -32,8 +32,8 @@ jobs:
     - name: Test  # GitVersion takes effect here with pushed tags in Release pipeline
       run: dotnet test --no-build --configuration Release --verbosity normal
 
-    # - name: Pack
-    #   run: dotnet pack --no-build --configuration Release --output package  # results package.nupkg
+    - name: Pack
+      run: dotnet pack --no-build --configuration Release --output package2  # results package.nupkg
 
     - name: Publish
       run: dotnet publish -c Release -o package

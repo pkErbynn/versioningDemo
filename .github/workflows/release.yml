@@ -3,24 +3,22 @@ name: Release
 
 on:
   push:
-     tags: [ "v[0-9]+.[0-9]+.[0-9]+" ]
+     tags: [ "v[0-9]+.[0-9]+.[0-9]+*" ]
 
 jobs:
   build:
     uses: ./.github/workflows/common.yml
 
-  download-and-deploy-artifact:
-    runs-on:  windows-2022
+  nuget-push:
+    runs-on:  windows-2022 # windows-latest....dotnet 6 uses -2022
     needs: build
 
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          name: versioningDemo-${{ needs.build.outputs.semVer }}
-
-      # - name: Display structure of downloaded files
-      #   run: ls -R
+          name: package   # download artifact w/ this name, into same folder name
 
       - name: Publish to nuget
-        run: echo "Publish..."
+        run: echo "Publishing..."
+        # run: dotnet nuget push "./package/*.nupkg" --no-symbols true --source "https://api.nuget.org/v3/index.json" --api-key ${{ secrets.NUGET_KEY }}

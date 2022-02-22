@@ -44,3 +44,10 @@ jobs:
         name: package
         path: package/*
         if-no-files-found: error
+
+    - name: Package published artifact 2
+      uses: actions/upload-artifact@v2
+      with:
+        name: package2
+        path: package2/*
+        if-no-files-found: error
